@@ -12,6 +12,7 @@ djangorestframework = "*"
 markdown = "*"
 django-filter = "*"
 mysqlclient = "*"
+psycopg2 = "*"
 
 [dev-packages]
 
