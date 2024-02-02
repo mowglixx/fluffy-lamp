@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    env_file:
+      - .env
+  # api:
+  #   container_name: api
+  #   build: ./api
+  #   volumes:
+  #     - ./api/app:/app
+  #   ports:
+  #     - 8000:8000
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - db
+  client:
+    container_name: client
+    build: ./client
+    ports:
+      - 8088:3000
+    depends_on:
+      - db
+      # - api
+
+secrets:
+  db_pass:
+    environment: "DB_PASS"
+  db_root_pass:
+    environment: "DB_ROOT_PASS"
+
+volumes:
+  db_data:
